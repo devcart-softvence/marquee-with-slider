@@ -2,6 +2,9 @@
 ## Overview
 The Custom Marquee with Slider Section is a fully responsive Shopify section combining an autoplaying image slider with a smooth-scrolling marquee. Ideal for highlighting product categories, promotional messages, or brand values — with editable headings, buttons, animations, and optional marquee images.
 
+<img width="1907" height="877" alt="slider with marquee" src="https://github.com/user-attachments/assets/1365df88-01f7-4513-be56-7f76015aeed7" />
+
+
 # ✅ How to Install
 ## Step 1: Open Theme Code Editor
 
@@ -17,7 +20,7 @@ Find your live theme and click on "..." → Edit code
 In the Sections folder, click "Add a new section"
 
 
-Name it something like custom-slider-marquee.liquid
+Name it something like custom-marquee-with-slider.liquid
 
 
 Paste the full section code and save.
