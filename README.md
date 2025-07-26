@@ -98,7 +98,7 @@ Heading Text Color
 Subheading Text Color
 
 
-##💡 Design Tips
+## 💡 Design Tips
 
 Use contrast: Bright text on dark images ensures readability.
 
