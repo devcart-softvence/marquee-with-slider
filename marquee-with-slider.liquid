@@ -1,0 +1,354 @@
+<section class="slider-marquee-section">
+  <div class="slides" data-autoplay-speed="{{ section.settings.autoplay_speed | default: 3000 }}">
+    {% if section.settings.show_overlay %}
+      <div class="image-overlay"></div>
+    {% endif %}
+    <div class="heading-box {{ section.settings.heading_position }}">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+
+    {% assign has_slides = false %}
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' and block.settings.slide_image != blank %}
+        {% assign has_slides = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% if has_slides %}
+      {% assign first_slide = true %}
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' and block.settings.slide_image %}
+          <a href="{{ block.settings.slide_link | default: '/#' }}" class="slide {% if first_slide %}active{% endif %}">
+            <img src="{{ block.settings.slide_image | img_url: 'master' }}" alt="">
+          </a>
+          {% assign first_slide = false %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div class="slide active" style="background: #333; display: flex; align-items: center; justify-content: center; color: {{ section.settings.heading_text_color }};">
+        <p style="font-size: 24px;">No Slides Added</p>
+      </div>
+    {% endif %}
+
+    <div class="marquee">
+      <div class="marquee-content" style="animation: scroll-marquee {{ section.settings.marquee_speed | default: 15 }}s linear infinite;">
+        {% for block in section.blocks %}
+          {% if block.type == 'marquee' and block.settings.marquee_text != blank %}
+            <span>
+              {% if block.settings.marquee_image != blank %}
+                <img src="{{ block.settings.marquee_image | img_url: '100x' }}" alt="Marquee Image">
+              {% endif %}
+              {{ block.settings.marquee_text }}
+            </span>
+          {% endif %}
+        {% endfor %}
+        {% for block in section.blocks %}
+          {% if block.type == 'marquee' and block.settings.marquee_text != blank %}
+            <span>
+              {% if block.settings.marquee_image != blank %}
+                <img src="{{ block.settings.marquee_image | img_url: '100x' }}" alt="Marquee Image">
+              {% endif %}
+              {{ block.settings.marquee_text }}
+            </span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="explore-btn {{ section.settings.button_position }}">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.slider-marquee-section {
+  position: relative;
+  overflow: hidden;
+}
+.slides {
+  min-height: 100vh;
+  position: relative;
+}
+.slides img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+.image-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4); z-index: 1;
+}
+.heading-box {
+  position: absolute;
+  top: 16%; 
+  color: #fff; 
+  z-index: 2;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+.heading-box h2 {
+  color: {{ section.settings.heading_text_color }};
+  font-size: {{ section.settings.heading-font-size }}px;
+}
+.heading-box p {
+  color: {{ section.settings.subheading_text_color }};
+  font-size: {{ section.settings.subheading-font-size }}px;
+}
+.heading-box.left { left: 20%; text-align: left; }
+.heading-box.center { left: 50%; transform: translateX(-50%); text-align: center; }
+.heading-box.right { right: 20%; text-align: right; }
+.marquee {
+  position: absolute;
+  top: 50%; left: 0; transform: translateY(-50%);
+  width: 100%; overflow: hidden; z-index: 2;
+}
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation-timing-function: linear;
+  align-items: center;
+}
+.marquee span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 20px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  font-size: 32px;
+}
+.marquee span img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+@media (min-width: 768px) {
+  .marquee span {
+    font-size: 70px;
+    margin: 0 50px;
+  }
+  .marquee span img {
+    width: 70px;
+    height: 70px;
+  }
+}
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.slide {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+  position: absolute;
+  top: 0; left: 0; width: 100%;
+}
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+.explore-btn {
+  position: absolute; 
+  bottom: 16%; 
+  padding: 12px 25px;
+  background: {{ section.settings.button_bg_color }};
+  color: {{ section.settings.button_text_color }};
+  border-radius: {{ section.settings.button_radius }}px;
+  font-weight: 600; 
+  text-decoration: none;
+  transition: all 0.3s; z-index: 2;
+}
+.explore-btn:hover {
+  background: {{ section.settings.button_hover_bg_color }};
+  color: {{ section.settings.button_hover_text_color }};
+}
+.explore-btn.left { left: 20%; }
+.explore-btn.center { left: 50%; transform: translateX(-50%); }
+.explore-btn.right { right: 20%; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.querySelector('.slides');
+  const slides = container.querySelectorAll('.slide');
+  if (!slides.length) return;
+
+  const speed = parseInt(container.dataset.autoplaySpeed) || 3000;
+  let index = 0;
+  function showSlide(idx) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === idx);
+    });
+  }
+  showSlide(index);
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, speed);
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Slider with Marquee",
+  "settings": [
+    { 
+      "type": "text", 
+      "id": "heading", 
+      "label": "Heading Text", 
+      "default": "Welcome to Our Store" 
+    },
+    { 
+      "type": "range", 
+      "id": "heading-font-size", 
+      "label": "Heading Font Size", 
+      "min": 20,
+      "max": 72,
+      "default": 36 
+    },
+    { 
+      "type": "text", 
+      "id": "subheading", 
+      "label": "Subheading Text", 
+      "default": "Discover Amazing Products" 
+    },
+    { 
+      "type": "range", 
+      "id": "subheading-font-size", 
+      "label": "Subheading Font Size", 
+      "min": 8,
+      "max": 32,
+      "default": 16 
+    },
+    {
+      "type": "select",
+      "id": "heading_position",
+      "label": "Heading Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Image Overlay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button Hover Background Color",
+      "default": "#D6D6D6"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_text_color",
+      "label": "Heading Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subheading_text_color",
+      "label": "Subheading Text Color",
+      "default": "#ffffff"
+    },
+    { "type": "text", "id": "button_text", "label": "Explore Button Text", "default": "Explore More" },
+    { "type": "url", "id": "button_link", "label": "Explore Button Link"},
+    {
+      "type": "select",
+      "id": "button_position",
+      "label": "Button Position",
+      "options": [
+        { "value": "left", "label": "Bottom Left" },
+        { "value": "center", "label": "Bottom Center" },
+        { "value": "right", "label": "Bottom Right" }
+      ],
+      "default": "center"
+    },
+    { "type": "number", "id": "autoplay_speed", "label": "Autoplay Speed (ms)", "default": 3000 },
+    { "type": "number", "id": "marquee_speed", "label": "Marquee Speed (seconds)", "default": 15 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "slide_image", "label": "Slide Image" },
+        { "type": "url", "id": "slide_link", "label": "Slide Link" }
+      ]
+    },
+    {
+      "type": "marquee",
+      "name": "Marquee Text",
+      "settings": [
+        { 
+          "type": "text", 
+          "id": "marquee_text", 
+          "label": "Text Content" 
+        },
+        {
+          "type": "image_picker",
+          "id": "marquee_image",
+          "label": "Image (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider with Marquee",
+      "category": "Custom Sections",
+      "blocks": [
+        { "type": "slide", "settings": { "slide_link": "#" } },
+        { "type": "slide", "settings": { "slide_link": "#" } },
+        { "type": "slide", "settings": { "slide_link": "#" } },
+        { "type": "slide", "settings": { "slide_link": "#" } },
+        { "type": "slide", "settings": { "slide_link": "#" } },
+        { "type": "marquee", "settings": { "marquee_text": "Fast Shipping" } },
+        { "type": "marquee", "settings": { "marquee_text": "Quality Products" } },
+        { "type": "marquee", "settings": { "marquee_text": "Discover Joy in Every Moment" } },
+        { "type": "marquee", "settings": { "marquee_text": "Comfort Meets Style" } },
+        { "type": "marquee", "settings": { "marquee_text": "Satisfaction Guarantee" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
