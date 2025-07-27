@@ -34,7 +34,7 @@ Open the Shopify Theme Editor (Customize)
 Navigate to the page (Homepage or any page that allows sections)
 
 
-Click "Add Section" and select “Marquee with Slider”
+Click "Add Section" and select “Marquee with Slider”.
 
 
 ## 2. Configure Slider Settings
