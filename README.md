@@ -9,21 +9,21 @@ The Custom Marquee with Slider Section is a fully responsive Shopify section com
 ## Step 1: Open Theme Code Editor
 
 
-Go to your Shopify Admin → Online Store → Themes
+- Go to your Shopify Admin → Online Store → Themes
 
 
-Find your live theme and click on "..." → Edit code
+- Find your live theme and click on "..." → Edit code
 
 
 ## Step 2: Create the Section File
 
-In the Sections folder, click "Add a new section"
+- In the Sections folder, click "Add a new section"
 
 
-Name it something like custom-marquee-with-slider.liquid
+- Name it something like custom-marquee-with-slider.liquid
 
 
-Paste the full section code and save.
+- Paste the full section code and save.
 
 
 # ✅ How to Use
