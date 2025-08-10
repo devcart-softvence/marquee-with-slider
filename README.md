@@ -39,43 +39,43 @@ The Custom Marquee with Slider Section is a fully responsive Shopify section com
 
 ## 2. Configure Slider Settings
 
-Add Slides: Each slide supports an image, heading, subheading, and button.
+- Add Slides: Each slide supports an image, heading, subheading, and button.
 
 
-Image: Upload high-resolution promotional or lifestyle images.
+- Image: Upload high-resolution promotional or lifestyle images.
 
-Image Overlay: Add or remove image overlay.
-
-
-Heading / Subheading: Appears over the slider (top-left aligned).
+- Image Overlay: Add or remove image overlay.
 
 
-Explore Button: Customize the button label, position, and link.
+- Heading / Subheading: Appears over the slider (top-left aligned).
+
+
+- Explore Button: Customize the button label, position, and link.
 
 
 ## 3. Customize Marquee
-Enable Marquee: Optional scrolling marquee with text or images.
+- Enable Marquee: Optional scrolling marquee with text or images.
 
 
-Add Marquee Items: Each block supports:
+- Add Marquee Items: Each block supports:
 
 
-Text (Positive messaging, promotional lines)
+- Text (Positive messaging, promotional lines)
 
 
-Optional Image (Logo, icon, badge, etc.)
+- Optional Image (Logo, icon, badge, etc.)
 
 
 
 
-Smooth Scroll: The marquee is fully animated and mobile-friendly.
+- Smooth Scroll: The marquee is fully animated and mobile-friendly.
 
 
 ## 4. Button Customization
-Button Radius: Adjustable from 0 to 100 (px)
+- Button Radius: Adjustable from 0 to 100 (px)
 
 
-Colors:
+- Colors:
 
 Button Background
 
@@ -92,27 +92,27 @@ Hover Text
 
 
 ## 5. Typography Options
-Heading Text Color
+- Heading Text Color
 
 
-Subheading Text Color
+- Subheading Text Color
 
 
 ## 💡 Design Tips
 
-Use contrast: Bright text on dark images ensures readability.
+- Use contrast: Bright text on dark images ensures readability.
 
 
-Keep slides clean: Avoid overloading text.
+- Keep slides clean: Avoid overloading text.
 
 
-Loop messaging: Use short, impactful phrases in marquee.
+- Loop messaging: Use short, impactful phrases in marquee.
 
 
-Use transparent PNGs: For marquee images/icons to blend well.
+- Use transparent PNGs: For marquee images/icons to blend well.
 
 
-# ✅ TroubleshootingSlider not showing?
+# ✅ Troubleshooting Slider not showing?
 
 Make sure you’ve added at least one slide and image.
 
