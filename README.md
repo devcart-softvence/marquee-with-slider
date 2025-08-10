@@ -75,19 +75,18 @@ The Custom Marquee with Slider Section is a fully responsive Shopify section com
 - Button Radius: Adjustable from 0 to 100 (px)
 
 
-- Colors:
+Colors:
 
-Button Background
-
-
-Button Text
+- Button Background
 
 
-Hover Background
+- Button Text
 
 
-Hover Text
+- Hover Background
 
+
+- Hover Text
 
 
 
